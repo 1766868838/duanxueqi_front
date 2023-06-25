@@ -22,7 +22,7 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                    <el-input v-model="form.password" placeholder="请输入密码" >
+                    <el-input type="password" show-password v-model="form.password" placeholder="请输入密码" >
                         <template #prefix>
                         <el-icon ><lock /></el-icon>
                         </template>
@@ -38,6 +38,11 @@
 <script  setup>
 import { reactive } from 'vue'
 import { User,Lock } from '@element-plus/icons-vue'
+import {login} from "~/api/manager"
+import { ElNotification } from 'element-plus'
+import {useRouter} from "vue-router"
+
+const router = useRouter()
 // do not use same name with ref
 const form = reactive({
     username: "",
@@ -57,8 +62,26 @@ const rules = {
     }]
 }
 const onSubmit = () => {
-    console.log(form.username);
-    console.log(form.password);
-    console.log('submit!')
+    // if(form.username == "111"&&form.password =="111"){
+    //     this.$router.push("/badmin")
+    // }
+    login(form.username,form.password)
+    .then(res=>{
+        console.log(res);
+        //提示成功
+        ElNotification({
+            message:"登录成功",
+            type: 'success',
+            duration:3000
+        })
+        router.push("/badmin")
+    })
+    .catch(err=>{
+        ElNotification({
+            message: err.response.data.msg || "请求失败",
+            type: 'error',
+            duration:3000
+        })
+    })
 }
 </script>
