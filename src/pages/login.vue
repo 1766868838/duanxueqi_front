@@ -38,6 +38,7 @@
 <script  setup>
 import { reactive } from 'vue'
 import { User,Lock } from '@element-plus/icons-vue'
+import router from '../router';
 // do not use same name with ref
 const form = reactive({
     username: "",
@@ -59,6 +60,6 @@ const rules = {
 const onSubmit = () => {
     console.log(form.username);
     console.log(form.password);
-    console.log('submit!')
+    router.push('/Sadmin')
 }
 </script>
