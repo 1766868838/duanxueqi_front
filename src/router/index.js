@@ -10,6 +10,9 @@ import Reader from '~/pages/Reader.vue'
 import NotFound from '~/pages/404.vue'
 import Login from '~/pages/login.vue'
 import Bmanage from '~/pages/Bmanage.vue'
+
+import Person from '~/pages/Person.vue'
+
 import Bbook from '~/pages/Bbooks.vue'
 import Rbook from "~/pages/Rbook.vue"
 import Librarian from "~/pages/librarian.vue"
@@ -19,6 +22,7 @@ import mReader from "~/pages/mReader.vue"
 import addReader from "~/pages/aReader.vue"
 import mr from "~/pages/modifyReader.vue"
 import sb from "~/pages/Sbooks.vue"
+
 
 //路由配置
 const routes = [{
@@ -82,7 +86,11 @@ const routes = [{
 },{ 
     path: '/:pathMatch(.*)*', 
     name: 'NotFound',
-    component: NotFound },
+    component: NotFound 
+},{
+    path:"/Person",
+    component:Person
+}, 
 ]
 
 //接受路由配置
