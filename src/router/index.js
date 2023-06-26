@@ -10,6 +10,7 @@ import Reader from '~/pages/Reader.vue'
 import NotFound from '~/pages/404.vue'
 import Login from '~/pages/login.vue'
 import Bmanage from '~/pages/Bmanage.vue'
+import Person from '~/pages/Person.vue'
 
 //路由配置
 const routes = [{
@@ -36,7 +37,11 @@ const routes = [{
 },{ 
     path: '/:pathMatch(.*)*', 
     name: 'NotFound',
-    component: NotFound },
+    component: NotFound 
+},{
+    path:"/Person",
+    component:Person
+}, 
 ]
 
 //接受路由配置
