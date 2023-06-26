@@ -10,6 +10,11 @@ import Reader from '~/pages/Reader.vue'
 import NotFound from '~/pages/404.vue'
 import Login from '~/pages/login.vue'
 import Bmanage from '~/pages/Bmanage.vue'
+import Bbook from '~/pages/Bbooks.vue'
+import Rbook from "~/pages/Rbook.vue"
+import Librarian from "~/pages/librarian.vue"
+import AddBook from "~/pages/addBook.vue"
+import MInfo from "~/pages/mInfo.vue"
 
 //路由配置
 const routes = [{
@@ -22,6 +27,21 @@ const routes = [{
         {
             path:"/Badmin/bmanage",
             component:Bmanage
+        },{
+            path:"/Badmin/bbooks",
+            component:Bbook
+        },{
+            path:"/Badmin/Rbook",
+            component:Rbook
+        },{
+            path:"/Badmin/librarian",
+            component:Librarian
+        },{
+            path:"/Badmin/addBook",
+            component:AddBook
+        },{
+            path:"/Badmin/minfo",
+            component:MInfo
         }
     ]
 },{

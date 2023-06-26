@@ -3,11 +3,9 @@
         <el-row>
             <el-col :span="24">
                 <el-button type="primary">
-                  <router-link to="/Badmin/Rbook">借书</router-link>  
+                   <router-link to="/Badmin/addBook">添加</router-link>
                 </el-button>
-                <el-button type="success">
-                    <router-link to="/Badmin/Rbook">还书</router-link>  
-                </el-button>
+                <el-button type="success" @click="minfo">修改</el-button>
                 <el-button type="warning">删除</el-button>
             </el-col>
         </el-row>
@@ -16,47 +14,47 @@
                 <div>选中</div>
             </el-col>
             <el-col :span="3">
+                <div>图书编号</div>
+            </el-col>
+            <el-col :span="3">
                <div>图书名称</div>
             </el-col>
             <el-col :span="3">
-               <div>借书卡</div>
+               <div>图书类型</div>
             </el-col>
             <el-col :span="3">
-               <div>借阅人</div>
+               <div>作者</div>
             </el-col>
             <el-col :span="4">
-               <div>借阅时间</div>
+               <div>价格</div>
             </el-col>
             <el-col :span="4">
-               <div>还书时间</div>
-            </el-col>
-            <el-col :span="3">
-               <div>还书类型</div>
+               <div>语言</div>
             </el-col>
         </el-row>
           <!-- 动态生成的书籍列表 -->
-      <div v-for="item in data" :key="item.Bname" style="margin-top:10px; border-bottom:1px solid #ddd">
+      <div v-for="item in data" :key="item.Bid" style="margin-top:10px; border-bottom:1px solid #ddd">
         <el-row>
-          <el-col :span="3">
+            <el-col :span="3">
             <el-checkbox v-model="item.checked" />
+          </el-col>
+          <el-col :span="3">
+            <div>{{ item.Bid}}</div>
           </el-col>
           <el-col :span="3">
             <div>{{ item.Bname }}</div>
           </el-col>
           <el-col :span="3">
-            <div>{{ item.Bcard }}</div>
+            <div>{{ item.Btype }}</div>
           </el-col>
           <el-col :span="3">
-            <div>{{ item.Bman }}</div>
+            <div>{{ item.author}}</div>
           </el-col>
           <el-col :span="4">
-            <div>{{ item.time }}</div>
+            <div>{{ item.price }}</div>
           </el-col>
           <el-col :span="4">
-            <div>{{ item.BackTime }}</div>
-          </el-col>
-          <el-col :span="3">
-            <div>{{ item.BackType }}</div>
+            <div>{{ item.language}}</div>
           </el-col>
         </el-row>
       </div>
@@ -69,30 +67,34 @@ const router = useRouter()
 //静态测试数据
 const data = [
     {
+        Bid:"1001",
         Bname: "红楼梦",
-        Bcard: "8120116042",
-        Bman: "彭于晏",
-        time: "2021-04-05 21:42:35",
-        BackTime:"2021-05-05 10:00:00",
-        BackType:"正常还书"
+        Btype: "文学类",
+        author: "曹雪芹",
+        price:"39",
+        language:"中文"
     },
     {
-        Bname: "西游记",
-        Bcard: "8120116043",
-        Bman: "胡歌",
-        time: "2021-05-01 16:42:35",
-        BackTime:"2021-05-05 10:00:00",
-        BackType:"正常还书"
+        Bid:"1002",
+        Bname: "红楼梦",
+        Btype: "文学类",
+        author: "曹雪芹",
+        price:"39",
+        language:"中文"
     },
     {
-        Bname: "三国演义",
-        Bcard: "8120116044",
-        Bman: "陈恋",
-        time: "2021-05-05 15:05:35",
-        BackTime:"2021-05-05 10:00:00",
-        BackType:"正常还书"
+        Bid:"1003",
+        Bname: "红楼梦",
+        Btype: "文学类",
+        author: "曹雪芹",
+        price:"39",
+        language:"中文"
     },
 ]
 //checkbox状态
 const checked1 = ref(false)
+
+const minfo =()=>{
+    router.push("/Badmin/minfo")
+}
 </script>
