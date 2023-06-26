@@ -38,11 +38,15 @@
 <script  setup>
 import { reactive } from 'vue'
 import { User,Lock } from '@element-plus/icons-vue'
+
 import {login} from "~/api/manager"
 import { ElNotification } from 'element-plus'
 import {useRouter} from "vue-router"
 
 const router = useRouter()
+
+// import router from '../router';
+
 // do not use same name with ref
 const form = reactive({
     username: "",
@@ -62,6 +66,7 @@ const rules = {
     }]
 }
 const onSubmit = () => {
+
     // if(form.username == "111"&&form.password =="111"){
     //     this.$router.push("/badmin")
     // }
@@ -83,5 +88,9 @@ const onSubmit = () => {
             duration:3000
         })
     })
+    console.log(form.username);
+    console.log(form.password);
+    router.push('/Sadmin')
+
 }
 </script>

@@ -9,6 +9,7 @@ import Sadmin from '~/pages/Sadmin.vue'
 import Reader from '~/pages/Reader.vue'
 import NotFound from '~/pages/404.vue'
 import Login from '~/pages/login.vue'
+import Bmanage from '~/pages/Bmanage.vue'
 
 //路由配置
 const routes = [{
@@ -16,7 +17,13 @@ const routes = [{
     component:Login
 },{
     path:"/Badmin",
-    component:Badmin
+    component:Badmin,
+    children:[
+        {
+            path:"/Badmin/bmanage",
+            component:Bmanage
+        }
+    ]
 },{
     path:"/Sadmin",
     component:Sadmin
