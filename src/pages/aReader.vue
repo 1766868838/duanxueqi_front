@@ -1,43 +1,30 @@
 <template>
     <el-form :model="form" label-width="120px">
-      <el-form-item label="图书名称">
+      <el-form-item label="读者卡号">
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-form-item label="图书编号">
+      <el-form-item label="用户名">
         <el-input v-model="form.bId" />
       </el-form-item>
-      <el-form-item label="图书类型">
+      <el-form-item label="性别">
         <el-select v-model="form.region" placeholder="please select">
-          <el-option label="文学类" value="文学类" />
-          <el-option label="经济学类" value="经济学类" />
-          <el-option label="法学类" value="法学类" />
-          <el-option label="历史类" value="历史类" />
-          <el-option label="工学类" value="工学类" />
-          <el-option label="统计学类" value="统计学类" />
+          <el-option label="男" value="男" />
+          <el-option label="女" value="女" />
         </el-select>
       </el-form-item>
-      <el-form-item label="图书作者">
+      <el-form-item label="真实姓名">
         <el-input v-model="form.author" />
       </el-form-item>
-      <el-form-item label="图书出版社">
+      <el-form-item label="电话">
         <el-input v-model="form.date1" />
       </el-form-item>
-      <el-form-item label="图书语言">
+      <el-form-item label="邮箱">
         <el-input v-model="form.language" />
-      </el-form-item>
-      <el-form-item label="图书价格">
-        <el-input v-model="form.price" />
-      </el-form-item>
-      <el-form-item label="图书介绍">
-        <el-input v-model="form.desc" type="textarea" />
-      </el-form-item>
-      <el-form-item label="出版日期">
-        <el-input v-model="form.date2" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
         <el-button>
-            <router-link to="/Badmin/librarian">取消</router-link>
+            <router-link to="/Badmin/mReader">取消</router-link>
         </el-button>
       </el-form-item>
     </el-form>
@@ -65,7 +52,7 @@
     //保存数据库
 
     //跳转
-    router.push("/Badmin/librarian");
+    router.push("/Badmin/mReader");
   }
   </script>
   

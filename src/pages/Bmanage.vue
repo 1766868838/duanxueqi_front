@@ -3,7 +3,7 @@
         <el-row>
             <el-col :span="24">
                 <el-button type="primary">
-                  <router-link to="/Badmin/Rbook">借书</router-link>  
+                  <router-link to="/Badmin/bbooks">借书</router-link>  
                 </el-button>
                 <el-button type="success">
                     <router-link to="/Badmin/Rbook">还书</router-link>  

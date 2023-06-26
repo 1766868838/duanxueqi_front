@@ -8,7 +8,7 @@
           <el-aside width="200px" style="height:93vh;background:#545c64;">
             <myaside></myaside>
         </el-aside>
-          <el-main>Main</el-main>
+          <el-main>Mai</el-main>
         </el-container>
       </el-container>
     </div>

@@ -15,6 +15,10 @@ import Rbook from "~/pages/Rbook.vue"
 import Librarian from "~/pages/librarian.vue"
 import AddBook from "~/pages/addBook.vue"
 import MInfo from "~/pages/mInfo.vue"
+import mReader from "~/pages/mReader.vue"
+import addReader from "~/pages/aReader.vue"
+import mr from "~/pages/modifyReader.vue"
+import sb from "~/pages/Sbooks.vue"
 
 //路由配置
 const routes = [{
@@ -24,24 +28,46 @@ const routes = [{
     path:"/Badmin",
     component:Badmin,
     children:[
-        {
+        {   
+            //借阅管理
             path:"/Badmin/bmanage",
             component:Bmanage
         },{
+            //借页面
             path:"/Badmin/bbooks",
             component:Bbook
         },{
+            //还书
             path:"/Badmin/Rbook",
             component:Rbook
         },{
+            //图书管理
             path:"/Badmin/librarian",
             component:Librarian
         },{
+            //添加图书
             path:"/Badmin/addBook",
             component:AddBook
         },{
+            //修改图书信息
             path:"/Badmin/minfo",
             component:MInfo
+        },{
+            //读者管理
+            path:"/Badmin/mReader",
+            component:mReader
+        },{
+            //添加读者
+            path:"/Badmin/aReader",
+            component:addReader
+        },{
+            //修改读者信息
+            path:"/Badmin/mr",
+            component:mr
+        },{
+            //图书查询
+            path:"/Badmin/sb",
+            component:sb
         }
     ]
 },{

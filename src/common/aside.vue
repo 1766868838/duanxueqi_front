@@ -17,9 +17,15 @@
         <el-menu-item index="1-1">
           <router-link to="/Badmin/bmanage"> 借阅管理</router-link>
         </el-menu-item>
-        <el-menu-item index="1-2">图书管理</el-menu-item>
-        <el-menu-item index="1-3">图书查询</el-menu-item>
-        <el-menu-item index="1-4">读者管理</el-menu-item>
+        <el-menu-item index="1-2">
+          <router-link to="/Badmin/librarian"> 图书管理</router-link>
+        </el-menu-item>
+        <el-menu-item index="1-3">
+          <router-link to="/Badmin/sb">图书查询</router-link>
+        </el-menu-item>
+        <el-menu-item index="1-4">
+          <router-link to="/Badmin/mReader">读者管理</router-link>
+        </el-menu-item>
         <el-menu-item index="1-5">个人主页</el-menu-item>
         <el-menu-item index="1-6">图书管理员管理</el-menu-item>
       </el-sub-menu>
