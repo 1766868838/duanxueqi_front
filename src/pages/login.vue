@@ -13,7 +13,8 @@
                 <span>账号密码登录</span>
                 <span class="h-[1px] w-16 bg-gray-200"></span>
             </div>
-            <el-form :rules="rules" :model="form" class="w-[250px] ">
+            <el-form :rules="rules" :model="form" class="w-[300px] flex items-center justify-center
+        flex-col">
                 <el-form-item prop="username">
                     <el-input v-model="form.username" placeholder="请输入用户名">
                         <template #prefix>
@@ -28,21 +29,32 @@
                         </template>
                     </el-input>
                 </el-form-item>
-                <el-form-item>
-                    <el-button round color="#626aef" class="w-[250px]" type="primary" @click="onSubmit">登 录</el-button>
+                <div class="mb-2 flex items-center text-sm">
+                    <el-radio-group v-model="identity" class="ml-4">
+                    <el-radio label="3" size="large">系统管理员</el-radio>
+                    <el-radio label="2" size="large">图书管理员</el-radio>
+
+                    </el-radio-group>
+                    <el-radio-group v-model="identity" class="ml-4">
+                    <el-radio label="1" size="large">教师</el-radio>
+                    <el-radio label="0" size="large">学生</el-radio>
+                    </el-radio-group>
+                </div>
+                <el-form-item class="flex items-center justify-center">
+                    <el-button round color="#626aef" class="w-[250px] " type="primary" @click="onSubmit">登 录</el-button>
                 </el-form-item>
             </el-form>
         </el-col>
     </el-row>
 </template>
 <script  setup>
+import { ref } from 'vue'
 import { reactive } from 'vue'
 import { User,Lock } from '@element-plus/icons-vue'
-
 import {login} from "~/api/manager"
 import { ElNotification } from 'element-plus'
 import {useRouter} from "vue-router"
-
+const identity = ref('3')
 const router = useRouter()
 
 // import router from '../router';
