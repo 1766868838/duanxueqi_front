@@ -23,9 +23,11 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
+        <router-link to="/Badmin/mReader" style="margin-left:30px;">
         <el-button>
-            <router-link to="/Badmin/mReader">取消</router-link>
+            取消
         </el-button>
+      </router-link>
       </el-form-item>
     </el-form>
   </template>

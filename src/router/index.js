@@ -37,7 +37,7 @@ const routes = [{
             path:"/Badmin/bmanage",
             component:Bmanage
         },{
-            //借页面
+            //借书页面
             path:"/Badmin/bbooks",
             component:Bbook
         },{

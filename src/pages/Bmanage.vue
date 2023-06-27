@@ -2,12 +2,16 @@
     <div>
         <el-row>
             <el-col :span="24">
+              <router-link to="/Badmin/bbooks" style="margin-right: 30px;">
                 <el-button type="primary">
-                  <router-link to="/Badmin/bbooks">借书</router-link>  
+                 借书 
                 </el-button>
+              </router-link> 
+              <router-link to="/Badmin/Rbook" style="margin-right: 30px;">
                 <el-button type="success">
-                    <router-link to="/Badmin/Rbook">还书</router-link>  
+                   还书
                 </el-button>
+              </router-link>  
                 <el-button type="warning">删除</el-button>
             </el-col>
         </el-row>
