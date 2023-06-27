@@ -2,10 +2,14 @@
     <div>
         <el-row>
             <el-col :span="24">
+              <router-link to="/Badmin/addBook" style="margin-right:30px;">
                 <el-button type="primary">
-                   <router-link to="/Badmin/addBook">添加</router-link>
+                   添加
                 </el-button>
+              </router-link>
+              <router-link to="/Badmin/minfo" style="margin-right:30px;">
                 <el-button type="success" @click="minfo">修改</el-button>
+              </router-link>
                 <el-button type="warning">删除</el-button>
             </el-col>
         </el-row>
@@ -94,7 +98,4 @@ const data = [
 //checkbox状态
 const checked1 = ref(false)
 
-const minfo =()=>{
-    router.push("/Badmin/minfo")
-}
 </script>
