@@ -121,6 +121,9 @@
           </el-descriptions>
           <el-row style="margin-top: 50px; border-bottom: 1px solid #ddd">
             <el-col :span="4">
+                <div></div>
+              </el-col>
+            <el-col :span="4">
               <div>图书名称</div>
             </el-col>
             <el-col :span="3">
@@ -132,12 +135,9 @@
             <el-col :span="5">
               <div>借阅时间</div>
             </el-col>
-            <el-col :span="5">
-              <div>还书时间</div>
-            </el-col>
-            <el-col :span="3">
-              <div>还书类型</div>
-            </el-col>
+            <el-col :span="4">
+                <div></div>
+              </el-col>
           </el-row>
           <!-- 动态生成的书籍列表 -->
           <div
@@ -146,6 +146,9 @@
             style="margin-top: 10px; border-bottom: 1px solid #ddd"
           >
             <el-row>
+              <el-col :span="4">
+                <div></div>
+              </el-col>
               <el-col :span="4">
                 <div>{{ item.Bname }}</div>
               </el-col>
@@ -158,11 +161,8 @@
               <el-col :span="5">
                 <div>{{ item.time }}</div>
               </el-col>
-              <el-col :span="5">
-                <div>{{ item.BackTime }}</div>
-              </el-col>
-              <el-col :span="3">
-                <div>{{ item.BackType }}</div>
+              <el-col :span="4">
+                <div></div>
               </el-col>
             </el-row>
           </div>
@@ -190,24 +190,24 @@ import {
 const data = [
   {
     Bname: "红楼梦",
-    Bcard: "8120116042",
-    Bman: "彭于晏",
+    Bcard: "2020212205258",
+    Bman: "黄祚晟",
     time: "2021-04-05 21:42:35",
     BackTime: "2021-05-05 10:00:00",
     BackType: "正常还书",
   },
   {
     Bname: "西游记",
-    Bcard: "8120116043",
-    Bman: "胡歌",
+    Bcard: "2020212205258",
+    Bman: "黄祚晟",
     time: "2021-05-01 16:42:35",
     BackTime: "2021-05-05 10:00:00",
     BackType: "正常还书",
   },
   {
     Bname: "三国演义",
-    Bcard: "8120116044",
-    Bman: "陈恋",
+    Bcard: "2020212205258",
+    Bman: "黄祚晟",
     time: "2021-05-05 15:05:35",
     BackTime: "2021-05-05 10:00:00",
     BackType: "正常还书",

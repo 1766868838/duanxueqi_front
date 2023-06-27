@@ -22,6 +22,7 @@ import mReader from "~/pages/mReader.vue"
 import addReader from "~/pages/aReader.vue"
 import mr from "~/pages/modifyReader.vue"
 import sb from "~/pages/Sbooks.vue"
+import AdminManage from "~/pages/AdminManage.vue"
 
 
 //路由配置
@@ -88,9 +89,14 @@ const routes = [{
     name: 'NotFound',
     component: NotFound 
 },{
+    //个人主页
     path:"/Person",
     component:Person
-}, 
+},,{
+    //管理员管理界面
+    path:"/AdminManage",
+    component:AdminManage
+}
 ]
 
 //接受路由配置
