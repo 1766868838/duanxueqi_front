@@ -21,7 +21,7 @@
       </el-form-item>
     </el-form>
     <el-row style="margin-top:50px; border-bottom:1px solid #ddd">
-            <el-col :span="3">
+            <el-col :span="1">
                 <div>图书编号</div>
             </el-col>
             <el-col :span="3">
@@ -34,16 +34,25 @@
                <div>作者</div>
             </el-col>
             <el-col :span="4">
-               <div>价格</div>
+               <div>出版社</div>
             </el-col>
             <el-col :span="4">
+               <div>出版日期</div>
+            </el-col>
+            <el-col :span="2">
+               <div>价格</div>
+            </el-col>
+            <el-col :span="2">
                <div>语言</div>
+            </el-col>
+            <el-col :span="2">
+               <div>是否被借阅</div>
             </el-col>
         </el-row>
           <!-- 动态生成的书籍列表 -->
       <div v-for="item in data" :key="item.Bid" style="margin-top:10px; border-bottom:1px solid #ddd">
         <el-row>
-          <el-col :span="3">
+          <el-col :span="1">
             <div>{{ item.Bid}}</div>
           </el-col>
           <el-col :span="3">
@@ -56,10 +65,19 @@
             <div>{{ item.author}}</div>
           </el-col>
           <el-col :span="4">
-            <div>{{ item.price }}</div>
+            <div>{{ item.press}}</div>
           </el-col>
           <el-col :span="4">
+            <div>{{ item.publication_date}}</div>
+          </el-col>
+          <el-col :span="2">
+            <div>{{ item.price }}</div>
+          </el-col>
+          <el-col :span="2">
             <div>{{ item.language}}</div>
+          </el-col>
+          <el-col :span="2">
+            <div>{{ item.is_borrow}}</div>
           </el-col>
         </el-row>
         </div>
@@ -74,7 +92,8 @@ const router = useRouter()
     user: '',
     region: '',
     date: '',
-    regin:""
+    regin:"",
+    is_borrow:'',
   })
   //静态测试数据
 const data = [
@@ -83,24 +102,33 @@ const data = [
         Bname: "红楼梦",
         Btype: "文学类",
         author: "曹雪芹",
-        price:"39",
-        language:"中文"
+        press:'花生米出版社',
+        publication_date:'2023-06-21 10:36:12',
+        price:"39.99",
+        language:"中文",
+        is_borrow:"是"
     },
     {
         Bid:"1002",
         Bname: "红楼梦",
         Btype: "文学类",
         author: "曹雪芹",
-        price:"39",
-        language:"中文"
+        press:'花生米出版社',
+        publication_date:'2023-06-21 10:36:12',
+        price:"39.99",
+        language:"中文",
+        is_borrow:"是"
     },
     {
         Bid:"1003",
         Bname: "红楼梦",
         Btype: "文学类",
         author: "曹雪芹",
-        price:"39",
-        language:"中文"
+        press:'花生米出版社',
+        publication_date:'2023-06-21 10:36:12',
+        price:"39.99",
+        language:"中文",
+        is_borrow:"是"
     },
 ]
 const checked = ref(false)

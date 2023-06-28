@@ -1,37 +1,32 @@
 <template>
   <div class="common-layout">
     <el-dialog v-model="dialogFormVisible" title="个人信息修改">
-              <el-form :model="form">
-                <el-form-item
-                  label="姓名"
-                  :label-width="formLabelWidth"
-                >
-                  <el-input v-model="form.user_name" autocomplete="off" />
-                </el-form-item>
-                <el-form-item
-                  label="电话"
-                  :label-width="formLabelWidth"
-                >
-                  <el-input v-model="form.phone" autocomplete="off" />
-                </el-form-item>
-                <el-form-item
-                  label="性别"
-                  :label-width="formLabelWidth"
-                >
-                  <el-input v-model="form.gender" autocomplete="off" />
-                </el-form-item>
-              </el-form>
-              <template #footer>
-                <span class="dialog-footer">
-                  <el-button @click="dialogFormVisible = false"
-                    >Cancel</el-button
-                  >
-                  <el-button type="primary" @click="dialogFormVisible = false">
-                    Confirm
-                  </el-button>
-                </span>
-              </template>
-            </el-dialog>
+      <el-form :model="form">
+        <el-form-item label="用户名" :label-width="formLabelWidth">
+          <el-input v-model="form.nick_name" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="电话" :label-width="formLabelWidth">
+          <el-input v-model="form.phone" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="性别" :label-width="formLabelWidth">
+          <el-select v-model="form.gender" placeholder="请选择性别">
+            <el-option label="男" value="男" />
+            <el-option label="女" value="女" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="邮箱" :label-width="formLabelWidth">
+          <el-input v-model="form.email" autocomplete="off" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取消</el-button>
+          <el-button type="primary" @click="dialogFormVisible = false">
+            确认
+          </el-button>
+        </span>
+      </template>
+    </el-dialog>
     <el-container>
       <el-header style="background: #333; padding: 0; height: 7vh">
         <myheader></myheader>
@@ -51,14 +46,14 @@
             <template #extra>
               <el-button type="primary" @click="update_inf">修改</el-button>
             </template>
-            
+
             <el-descriptions-item>
               <template #label>
                 <div class="cell-item">
                   <el-icon :style="iconStyle">
                     <user />
                   </el-icon>
-                  姓名
+                  用户名
                 </div>
               </template>
               kooriookami
@@ -67,18 +62,18 @@
               <template #label>
                 <div class="cell-item">
                   <el-icon :style="iconStyle">
-                    <iphone />
+                    <Tickets />
                   </el-icon>
-                  电话
+                  姓名
                 </div>
               </template>
-              18100000000
+              黄祚晟
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
                 <div class="cell-item">
                   <el-icon :style="iconStyle">
-                    <location />
+                    <Tickets />
                   </el-icon>
                   卡号
                 </div>
@@ -99,13 +94,29 @@
             <el-descriptions-item>
               <template #label>
                 <div class="cell-item">
-                  <el-icon :style="iconStyle">
-                    <office-building />
-                  </el-icon>
-                  借阅数量
+                  <el-icon :style="iconStyle"><Iphone /></el-icon>
+                  电话
                 </div>
               </template>
-              0/10
+              10086
+            </el-descriptions-item>
+            <el-descriptions-item>
+              <template #label>
+                <div class="cell-item">
+                  <el-icon :style="iconStyle"><Message /></el-icon>
+                  邮箱
+                </div>
+              </template>
+              123@qq.com
+            </el-descriptions-item>
+            <el-descriptions-item>
+              <template #label>
+                <div class="cell-item">
+                  <el-icon :style="iconStyle"><UserFilled /></el-icon>
+                  身份
+                </div>
+              </template>
+              学生
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
@@ -113,16 +124,25 @@
                   <el-icon :style="iconStyle">
                     <office-building />
                   </el-icon>
-                  身份
+                  学院
                 </div>
               </template>
-              学生
+              信息科学与技术学院
+            </el-descriptions-item>
+            <el-descriptions-item>
+              <template #label>
+                <div class="cell-item">
+                  <el-icon :style="iconStyle"><Notebook /></el-icon>
+                  借阅数量
+                </div>
+              </template>
+              3/10
             </el-descriptions-item>
           </el-descriptions>
           <el-row style="margin-top: 50px; border-bottom: 1px solid #ddd">
             <el-col :span="4">
-                <div></div>
-              </el-col>
+              <div></div>
+            </el-col>
             <el-col :span="4">
               <div>图书名称</div>
             </el-col>
@@ -136,8 +156,8 @@
               <div>借阅时间</div>
             </el-col>
             <el-col :span="4">
-                <div></div>
-              </el-col>
+              <div></div>
+            </el-col>
           </el-row>
           <!-- 动态生成的书籍列表 -->
           <div
@@ -178,7 +198,7 @@
 <script lang="ts" setup>
 import myaside from "../common/aside.vue";
 import myheader from "../common/header.vue";
-import { reactive,computed, ref } from "vue";
+import { reactive, computed, ref } from "vue";
 import {
   Iphone,
   Location,
@@ -235,21 +255,23 @@ const blockMargin = computed(() => {
   };
 });
 
-const dialogFormVisible = ref(false)
-const formLabelWidth = '140px'
+const dialogFormVisible = ref(false);
+const formLabelWidth = "140px";
 const form = reactive({
-  user_name: '',
-  phone: '',
-  card_num: '',
-  gender: '',
-  borrow: '',
-  identity_type: '',
-})
-const update_inf=()=>{
-    console.log(dialogFormVisible)
-    dialogFormVisible.value=true;
-    console.log(dialogFormVisible)
-}
+  nick_name: "",
+  phone: "",
+  card_num: "",
+  gender: "",
+  borrow: "",
+  identity_type: "",
+  college: "",
+  email: "",
+});
+const update_inf = () => {
+  console.log(dialogFormVisible);
+  dialogFormVisible.value = true;
+  console.log(dialogFormVisible);
+};
 </script>
 
 <style scoped>
