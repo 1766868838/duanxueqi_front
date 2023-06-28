@@ -41,7 +41,6 @@
             title="个人信息"
             :column="3"
             :size="size"
-            border
           >
             <template #extra>
               <el-button type="primary" @click="update_inf">修改</el-button>

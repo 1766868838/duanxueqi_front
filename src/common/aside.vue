@@ -42,7 +42,9 @@
           </el-icon>
           <span>统计分析</span>
         </template>
+        <router-link to="/Badmin/sa">
         <el-menu-item index="2-1">统计分析</el-menu-item>
+        </router-link>
       </el-sub-menu>
     </el-menu>
   </el-col>

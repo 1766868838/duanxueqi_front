@@ -11,6 +11,9 @@
           <el-option label="文学类" value="文学类" />
           <el-option label="经济学类" value="经济学类" />
           <el-option label="法学类" value="法学类" />
+          <el-option label="历史类" value="历史类" />
+          <el-option label="工学类" value="工学类" />
+          <el-option label="统计学类" value="统计学类" />
         </el-select>
       </el-form-item>
       <el-form-item label="图书作者">

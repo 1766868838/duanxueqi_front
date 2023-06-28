@@ -22,9 +22,8 @@ import mReader from "~/pages/mReader.vue"
 import addReader from "~/pages/aReader.vue"
 import mr from "~/pages/modifyReader.vue"
 import sb from "~/pages/Sbooks.vue"
+import sa from "~/pages/Sanalysis.vue"
 import AdminManage from "~/pages/AdminManage.vue"
-
-
 //路由配置
 const routes = [{
     path:"/",//根路径
@@ -73,6 +72,10 @@ const routes = [{
             //图书查询
             path:"/Badmin/sb",
             component:sb
+        },{
+            //统计分析
+            path:"/Badmin/sa",
+            component:sa
         }
     ]
 },{
