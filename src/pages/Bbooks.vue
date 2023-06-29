@@ -2,7 +2,9 @@
     <el-form :model="form" label-width="120px">
       <el-form-item label="图书名称">
         <el-input v-model="form.name" />
+        <el-button type="primary" @click="" style="margin-top:10px">查询</el-button>
       </el-form-item>
+      
       <div style="margin-bottom: 20px;">
         <el-row style="margin-top:20px; border-bottom:1px solid #ddd">
             <el-col :span="3">

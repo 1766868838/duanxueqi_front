@@ -67,11 +67,13 @@
 <script  setup>
 import { ref } from "vue";
 import { reactive } from "vue";
-import axios from 'axios';
+import axios from "axios";
 import { User, Lock } from "@element-plus/icons-vue";
 import { login } from "~/api/manager";
 import { ElNotification } from "element-plus";
 import { useRouter } from "vue-router";
+import { useUserStore } from "../store.js";
+const pi = useUserStore();
 const identity = ref("3");
 const router = useRouter();
 
@@ -129,37 +131,52 @@ const rules = {
 // }
 
 /**
- * 判断表单输入是否为空
- */
-const isNull = () => {
-  if (form.card_num == "") {
-    alert("用户名不能为空");
-    return true;
-  } else if (form.password == "") {
-    alert("密码不能为空");
-    return true;
-  }
-  return false;
-};
-
-/**
  * 调用后台登录接口
  */
 const LoginApi = async () => {
-//   console.log(form.card_num, form.password, identity.value);
-//   if (isNull()) {
-//     return;
-//   }
+  console.log(1)
+  if (form.card_num == "") {
+    alert("用户名不能为空");
+    return ;
+  } else if (form.password == "") {
+    alert("密码不能为空");
+    return ;
+  }
   await axios({
     method: "get",
-    url: "/dev/api/login",
-    data: {
+    url: "/dev/login",
+    params: {
       card_num: form.card_num,
       password: form.password,
-      identity: identity.value,
+      identity_type: identity.value,
     },
   }).then((res) => {
-    
+    if (res.data != "") {
+      pi.user_inf = res.data;
+      pi.card_num=form.card_num
+      pi.password=form.password
+      pi.identity=identity.value
+      if (identity.value == 3) {
+        router.push("/AdminManage");
+      } else {
+        getBorrowinf()
+        router.push("/Person");
+      }
+    }
   });
+};
+//获取个人借阅记录
+const getBorrowinf = async () => {
+  await axios({
+    method: "get",
+    url: "/dev/selectOneBorrow",
+    params:{
+        card_num:form.card_num
+    }
+  }).then((res)=>{
+    pi.borrow_data=res.data;
+    console.log(res.data)
+    console.log(pi.borrow_data[0])
+  })
 };
 </script>

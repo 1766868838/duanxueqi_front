@@ -41,24 +41,24 @@
 const data = [
     {
         bID:"文学类",
-        Bname: "1200",
+        Bname: "2",
     },
     {
         bID:"法学类",
-        Bname: "3000",
+        Bname: "2",
     },
     {
         bID:"经济学类",
-        Bname: "1000",
+        Bname: "1",
     }, {
         bID:"历史类",
-        Bname: "1000",
+        Bname: "3",
     }, {
         bID:"工学类",
-        Bname: "1000",
+        Bname: "2",
     }, {
         bID:"统计学类",
-        Bname: "1000",
+        Bname: "1",
     },
 ]
   </script>

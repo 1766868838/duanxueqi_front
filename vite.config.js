@@ -19,7 +19,8 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
       '/dev':{
-        target:'http://192.168.1.100:8081',
+        target:'http://192.168.43.176:8081',
+        changeOrigin: true,
         rewrite:(path)=>path.replace(/^\/dev/,''),
       }
     }

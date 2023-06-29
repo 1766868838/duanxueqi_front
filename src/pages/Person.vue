@@ -10,8 +10,8 @@
         </el-form-item>
         <el-form-item label="性别" :label-width="formLabelWidth">
           <el-select v-model="form.gender" placeholder="请选择性别">
-            <el-option label="男" value="男" />
-            <el-option label="女" value="女" />
+            <el-option label="男" value="1" />
+            <el-option label="女" value="0" />
           </el-select>
         </el-form-item>
         <el-form-item label="邮箱" :label-width="formLabelWidth">
@@ -21,7 +21,7 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取消</el-button>
-          <el-button type="primary" @click="dialogFormVisible = false">
+          <el-button type="primary" @click="update_inf_confirm">
             确认
           </el-button>
         </span>
@@ -41,6 +41,7 @@
             title="个人信息"
             :column="3"
             :size="size"
+            border
           >
             <template #extra>
               <el-button type="primary" @click="update_inf">修改</el-button>
@@ -55,7 +56,7 @@
                   用户名
                 </div>
               </template>
-              kooriookami
+              {{ pi.user_inf.nickname }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
@@ -66,7 +67,7 @@
                   姓名
                 </div>
               </template>
-              黄祚晟
+              {{ pi.user_inf.username }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
@@ -77,7 +78,7 @@
                   卡号
                 </div>
               </template>
-              2020212205258
+              {{ pi.user_inf.cardNum }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
@@ -88,7 +89,10 @@
                   性别
                 </div>
               </template>
-              <el-tag size="small">男</el-tag>
+              <el-tag size="small" v-if="pi.user_inf.gender == 1">男</el-tag>
+              <el-tag size="small" type="danger" v-if="pi.user_inf.gender == 0"
+                >女</el-tag
+              >
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
@@ -97,7 +101,7 @@
                   电话
                 </div>
               </template>
-              10086
+              {{ pi.user_inf.phoneNum }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
@@ -106,7 +110,7 @@
                   邮箱
                 </div>
               </template>
-              123@qq.com
+              {{ pi.user_inf.email }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
@@ -115,7 +119,15 @@
                   身份
                 </div>
               </template>
-              学生
+              <el-tag size="small" v-if="pi.user_inf.identity == 0"
+                >学生</el-tag
+              >
+              <el-tag size="small" v-if="pi.user_inf.identity == 1"
+                >教师</el-tag
+              >
+              <el-tag size="small" v-if="pi.user_inf.identity == 2"
+                >图书管理员</el-tag
+              >
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
@@ -126,7 +138,7 @@
                   学院
                 </div>
               </template>
-              信息科学与技术学院
+              {{ pi.user_inf.college }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template #label>
@@ -135,56 +147,16 @@
                   借阅数量
                 </div>
               </template>
-              3/10
+              {{ pi.user_inf.borrowing }}/{{ 10 + pi.user_inf.identity * 5 }}
             </el-descriptions-item>
           </el-descriptions>
-          <el-row style="margin-top: 50px; border-bottom: 1px solid #ddd">
-            <el-col :span="4">
-              <div></div>
-            </el-col>
-            <el-col :span="4">
-              <div>图书名称</div>
-            </el-col>
-            <el-col :span="3">
-              <div>借书卡</div>
-            </el-col>
-            <el-col :span="3">
-              <div>借阅人</div>
-            </el-col>
-            <el-col :span="5">
-              <div>借阅时间</div>
-            </el-col>
-            <el-col :span="4">
-              <div></div>
-            </el-col>
-          </el-row>
-          <!-- 动态生成的书籍列表 -->
-          <div
-            v-for="item in data"
-            :key="item.Bname"
-            style="margin-top: 10px; border-bottom: 1px solid #ddd"
-          >
-            <el-row>
-              <el-col :span="4">
-                <div></div>
-              </el-col>
-              <el-col :span="4">
-                <div>{{ item.Bname }}</div>
-              </el-col>
-              <el-col :span="3">
-                <div>{{ item.Bcard }}</div>
-              </el-col>
-              <el-col :span="3">
-                <div>{{ item.Bman }}</div>
-              </el-col>
-              <el-col :span="5">
-                <div>{{ item.time }}</div>
-              </el-col>
-              <el-col :span="4">
-                <div></div>
-              </el-col>
-            </el-row>
-          </div>
+          <el-table :data="data" style="width: 100%;margin-top: 20px;" max-height="550">
+            <el-table-column prop="bookName" label="图书名称" span="3" />
+            <el-table-column prop="bookType" label="图书类型" span="3" />
+            <el-table-column prop="author" label="作者" span="3" />
+            <el-table-column prop="press" label="出版社" span="3" />
+            <el-table-column prop="borrowDate" label="借阅时间" span="4" />
+          </el-table>
         </el-main>
       </el-container>
     </el-container>
@@ -197,7 +169,8 @@
 <script lang="ts" setup>
 import myaside from "../common/aside.vue";
 import myheader from "../common/header.vue";
-import { reactive, computed, ref } from "vue";
+import axios from "axios";
+import { reactive, computed, ref, toRaw } from "vue";
 import {
   Iphone,
   Location,
@@ -205,33 +178,10 @@ import {
   Tickets,
   User,
 } from "@element-plus/icons-vue";
+import { useUserStore } from "../store.js";
+const pi = useUserStore();
 //静态测试数据
-const data = [
-  {
-    Bname: "红楼梦",
-    Bcard: "2020212205258",
-    Bman: "黄祚晟",
-    time: "2021-04-05 21:42:35",
-    BackTime: "2021-05-05 10:00:00",
-    BackType: "正常还书",
-  },
-  {
-    Bname: "西游记",
-    Bcard: "2020212205258",
-    Bman: "黄祚晟",
-    time: "2021-05-01 16:42:35",
-    BackTime: "2021-05-05 10:00:00",
-    BackType: "正常还书",
-  },
-  {
-    Bname: "三国演义",
-    Bcard: "2020212205258",
-    Bman: "黄祚晟",
-    time: "2021-05-05 15:05:35",
-    BackTime: "2021-05-05 10:00:00",
-    BackType: "正常还书",
-  },
-];
+const data=computed(()=> pi.borrow_data)
 const size = ref("");
 const iconStyle = computed(() => {
   const marginMap = {
@@ -267,10 +217,40 @@ const form = reactive({
   email: "",
 });
 const update_inf = () => {
-  console.log(dialogFormVisible);
   dialogFormVisible.value = true;
-  console.log(dialogFormVisible);
 };
+const update_inf_confirm = async() =>{
+  console.log(form)
+  if(form.nick_name!=""){
+    // @ts-ignore
+    pi.user_inf.nickname=form.nick_name
+  }
+  if(form.phone!=""){
+    // @ts-ignore
+    pi.user_inf.phoneNum=form.phone
+  }
+  if(form.gender!=""){
+    // @ts-ignore
+    pi.user_inf.gender=form.gender
+  }
+  if(form.email!=""){
+    // @ts-ignore
+    pi.user_inf.email=form.email
+  }
+  console.log(toRaw(pi.user_inf))
+  let currentuserinf = toRaw(pi.user_inf)
+  await axios({
+    method: "post",
+    url: "/dev/user/update",
+    data: currentuserinf,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+
+ 
+  dialogFormVisible.value = false;
+}
 </script>
 
 <style scoped>
